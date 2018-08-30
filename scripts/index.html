@@ -48,43 +48,6 @@
       </div>
     </div> -->
 
-  <div class="modal" id="basicModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <img src="images/ic_close.svg">
-          </button>
-        </div>
-        <div class="modal-body">
-
-
-          <div class="row">
-            <div class="col-10 offset-1">
-              <img class="percent_secure" src="images/ic_percent_secure.svg">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 percent_points">
-              <ul>
-                <li>
-                  Your phone will ask you to confirm that you trust SportsUnity app
-                </li>
-                <li>
-                  Complete installation to join 3 Lakh+ users already playing on SportsUnity
-                </li>
-              </ul>
-
-            </div>
-          </div>
-          <div class="row">
-            <a type="button" class="btn got_it_button" data-dismiss="modal" onclick="downloadApp()">Got it</a>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="container section-one">
     <div class="header-background-holder">
       <img class="header-background" src="images/line_with_glow.png" />
@@ -93,16 +56,16 @@
       <img src="images/ic_qunami_white.svg" class="logo" />
       <h2 class="header">THE best multiplayer</h2>
       <h2 class="header">quiz game</h2>
-      <img class="download-button-header" src="images/download_button.png" data-target="#basicModal" data-toggle="modal" />
+      <img class="download-button-header" src="images/download_button.png" onclick="javascript:Clipboard.copy(window.location.href)" />
     </div>
     <div class="scroll-button-cont">
-      <img class="scroll-button" src="images/ic_arrow.svg" />
+    <a href="#scrollTo" id="scrollit"><img class="scroll-button" src="images/ic_arrow.svg" /></a>
     </div>
   </div>
   <div class="container section-two">
     <div class="row">
       <div class="col-12">
-        <h2 class="feature-header">- our features -</h2>
+        <h2 class="feature-header" id="scrollTo">- our features -</h2>
 
       </div>
     </div>
@@ -137,7 +100,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-6">
-        <img class="download-button" src="images/download_button.png" data-target="#basicModal" data-toggle="modal" />
+        <img class="download-button" src="images/download_button.png" onclick="javascript:Clipboard.copy(window.location.href)" />
       </div>
     </div>
   </div>
@@ -158,8 +121,9 @@
       trackobj['url_params'] = locationPara
       // console.log(locationPara)
       // copyToClipboard(getParameterByName(locationPara))
-      fbq('trackCustom', 'download_app_page_button_click', trackobj);
-      // window.location = "http://www.qunami.co";
+      fbq('trackCustom', 'download_ios_app_button_click', trackobj);
+      window.location = "https://itunes.apple.com/in/app/qunami/id1375980618?ls=1&mt=8";
+      console.log("clicked and giongn")
     }
     function getParameterByName(name) {
       name='referrer&'+name
@@ -214,21 +178,9 @@
         console.log("href ",text)
         var locationPara = text.split('?')[1];
         var newtext = 'referrer&'+locationPara
-        var utms = locationPara.split('&');
         // console.log(newtext)
-        utms.forEach(element => {
-          console.log(element)
-          var str = element.split('=')
-          console.log("ye hai ",str,str[0],str[0] == 'friend_match')
-          if(str[0] == 'friend_match'){
-            createTextArea(str[1]);
-            selectText();
-            // copyToClipboard();
-          }
-
-        });
-        // createTextArea(newtext);
-        // selectText();
+        createTextArea(newtext);
+        selectText();
         copyToClipboard();
         goToAppStore();
     };
@@ -241,6 +193,32 @@
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     })
+  </script>
+  <script>
+  $(document).ready(function(){
+    // Add smooth scrolling to all links
+    $(".scrollit").on('click', function(event) {
+
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
+  });
   </script>
 </body>
 
