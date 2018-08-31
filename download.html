@@ -144,7 +144,7 @@ function goToAppStore() {
   // copyToClipboard(getParameterByName(locationPara))
   fbq('trackCustom', 'download_ios_app_button_click', trackobj);
   window.location.href = "https://itunes.apple.com/in/app/qunami/id1375980618?ls=1&mt=8";
-  // console.log("clicked and giongn");
+
 }
   window.Clipboard = (function(window, document, navigator) {
     var textArea,
@@ -259,6 +259,19 @@ function goToAppStore() {
           goToAppStore();
         }
 
+      }
+      else{
+        utmobj = {
+          utm_source:'organic',
+          utm_medium:'website',
+          utm_term:'none',
+          utm_campaign:'none'
+        }
+        createTextArea('website?' + JSON.stringify(utmobj));
+        selectText();
+        copyToClipboard();
+        // verifyValue(text, locationPara);
+        goToAppStore();
       }
 
     };
