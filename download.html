@@ -267,7 +267,7 @@ function goToAppStore() {
           utm_term:'none',
           utm_campaign:'none'
         }
-        createTextArea('window.location?' + JSON.stringify(utmobj));
+        createTextArea(window.location+'?' + JSON.stringify(utmobj));
         selectText();
         copyToClipboard();
         // verifyValue(text, locationPara);
